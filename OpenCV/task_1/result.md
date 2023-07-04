@@ -13,5 +13,5 @@ print('average:',img[0,:10,0])
 print('gray:   ',img_gray[0,:10])
 ```
 ##### 输出
-![](image/screen.png)
+![](image/screen.png)  
 灰度图的像素值可以是RGB三通道像素值的平均值。
