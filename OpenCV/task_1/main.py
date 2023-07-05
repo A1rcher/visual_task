@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('OpenCV/task_1/image/1.jpg')   # 读取图片
+img = cv2.imread('OpenCV/task_1/image/1.jpeg')   # 读取图片
 height, width, _ = img.shape
 for row in range(height):
     for col in range(width):

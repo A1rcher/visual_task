@@ -3,9 +3,11 @@
 import cv2
 import numpy as np
 
-threshold = 100     # 声明变量
+threshold = 100
 
-img = cv2.imread('OpenCV/task_2/image/1.jpeg')
+img = cv2.imread('OpenCV/task_3/image/1.jpeg')
+deep_img = img.copy()
+shallow_img = img
 height, width, _ = img.shape
 for row in range(height):
     for col in range(width):
@@ -18,6 +20,8 @@ for row in range(height):
         
         img[row, col] = [average, average, average]
 
+
 cv2.imshow('Image', img)
+cv2.imshow('DeepImage', deep_img)
+cv2.imshow('ShallowImage', shallow_img)
 cv2.waitKey(0)
-        
