@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/archer/ros1_ws/devel/setup.sh
