@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/lib/plumbing_pub_sub/publish"
-  "/home/archer/ros1_ws/devel/lib/plumbing_pub_sub/publish.pdb"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/lib/plumbing_pub_sub/publish"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/lib/plumbing_pub_sub/publish.pdb"
   "CMakeFiles/publish.dir/src/publish.cpp.o"
+  "CMakeFiles/publish.dir/src/publish.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
+services_str = "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
 pkg_name = "plumbing_server_client"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

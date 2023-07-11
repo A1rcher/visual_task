@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/share/gennodejs/ros/plumbing_server_client/srv/Addints.js"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/share/gennodejs/ros/plumbing_server_client/srv/Addints.js"
   "CMakeFiles/plumbing_server_client_generate_messages_nodejs"
 )
 

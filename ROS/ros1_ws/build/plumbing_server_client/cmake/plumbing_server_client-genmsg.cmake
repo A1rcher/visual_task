@@ -17,9 +17,9 @@ add_custom_target(plumbing_server_client_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
+get_filename_component(_filename "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
 add_custom_target(_plumbing_server_client_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "plumbing_server_client" "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "plumbing_server_client" "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv" ""
 )
 
 #
@@ -31,7 +31,7 @@ add_custom_target(_plumbing_server_client_generate_messages_check_deps_${_filena
 
 ### Generating Services
 _generate_srv_cpp(plumbing_server_client
-  "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
+  "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/plumbing_server_client
@@ -49,7 +49,7 @@ add_custom_target(plumbing_server_client_generate_messages_cpp
 add_dependencies(plumbing_server_client_generate_messages plumbing_server_client_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
+get_filename_component(_filename "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
 add_dependencies(plumbing_server_client_generate_messages_cpp _plumbing_server_client_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -64,7 +64,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS plumbing_server_client_generate_mes
 
 ### Generating Services
 _generate_srv_eus(plumbing_server_client
-  "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
+  "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/plumbing_server_client
@@ -82,7 +82,7 @@ add_custom_target(plumbing_server_client_generate_messages_eus
 add_dependencies(plumbing_server_client_generate_messages plumbing_server_client_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
+get_filename_component(_filename "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
 add_dependencies(plumbing_server_client_generate_messages_eus _plumbing_server_client_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -97,7 +97,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS plumbing_server_client_generate_mes
 
 ### Generating Services
 _generate_srv_lisp(plumbing_server_client
-  "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
+  "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/plumbing_server_client
@@ -115,7 +115,7 @@ add_custom_target(plumbing_server_client_generate_messages_lisp
 add_dependencies(plumbing_server_client_generate_messages plumbing_server_client_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
+get_filename_component(_filename "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
 add_dependencies(plumbing_server_client_generate_messages_lisp _plumbing_server_client_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -130,7 +130,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS plumbing_server_client_generate_mes
 
 ### Generating Services
 _generate_srv_nodejs(plumbing_server_client
-  "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
+  "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/plumbing_server_client
@@ -148,7 +148,7 @@ add_custom_target(plumbing_server_client_generate_messages_nodejs
 add_dependencies(plumbing_server_client_generate_messages plumbing_server_client_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
+get_filename_component(_filename "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
 add_dependencies(plumbing_server_client_generate_messages_nodejs _plumbing_server_client_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -163,7 +163,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS plumbing_server_client_generate_mes
 
 ### Generating Services
 _generate_srv_py(plumbing_server_client
-  "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
+  "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/plumbing_server_client
@@ -181,7 +181,7 @@ add_custom_target(plumbing_server_client_generate_messages_py
 add_dependencies(plumbing_server_client_generate_messages plumbing_server_client_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/archer/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
+get_filename_component(_filename "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_server_client/srv/Addints.srv" NAME_WE)
 add_dependencies(plumbing_server_client_generate_messages_py _plumbing_server_client_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

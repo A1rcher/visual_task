@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/include/plumbing_server_client/Addints.h"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/include/plumbing_server_client/Addints.h"
   "CMakeFiles/plumbing_server_client_generate_messages_cpp"
 )
 

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/share/gennodejs/ros/plumbing_pub_sub/msg/Person.js"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/share/gennodejs/ros/plumbing_pub_sub/msg/Person.js"
   "CMakeFiles/plumbing_pub_sub_generate_messages_nodejs"
 )
 

@@ -1,4 +1,4 @@
-prefix=/home/archer/ros1_ws/install
+prefix=/home/archer/visual_task/ROS/ros1_ws/install
 
 Name: hello_vscode
 Description: Description of hello_vscode

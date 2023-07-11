@@ -1,4 +1,4 @@
-prefix=/home/archer/ros1_ws/devel
+prefix=/home/archer/visual_task/ROS/ros1_ws/devel
 
 Name: plumbing_param_server
 Description: Description of plumbing_param_server

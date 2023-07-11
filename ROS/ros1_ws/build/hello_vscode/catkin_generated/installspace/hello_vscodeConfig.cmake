@@ -67,14 +67,14 @@ set(hello_vscode_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(hello_vscode_SOURCE_PREFIX /home/archer/ros1_ws/src/hello_vscode)
-  set(hello_vscode_DEVEL_PREFIX /home/archer/ros1_ws/devel)
+  set(hello_vscode_SOURCE_PREFIX /home/archer/visual_task/ROS/ros1_ws/src/hello_vscode)
+  set(hello_vscode_DEVEL_PREFIX /home/archer/visual_task/ROS/ros1_ws/devel)
   set(hello_vscode_INSTALL_PREFIX "")
   set(hello_vscode_PREFIX ${hello_vscode_DEVEL_PREFIX})
 else()
   set(hello_vscode_SOURCE_PREFIX "")
   set(hello_vscode_DEVEL_PREFIX "")
-  set(hello_vscode_INSTALL_PREFIX /home/archer/ros1_ws/install)
+  set(hello_vscode_INSTALL_PREFIX /home/archer/visual_task/ROS/ros1_ws/install)
   set(hello_vscode_PREFIX ${hello_vscode_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/archer/ros1_ws/install/lib;/home/archer/ros/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/archer/visual_task/ROS/ros1_ws/install/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

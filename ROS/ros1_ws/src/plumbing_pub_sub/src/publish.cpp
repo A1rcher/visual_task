@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     // 实例化ros句柄
     ros::NodeHandle nh;
     // 实例化 发布者 对象
-    ros::Publisher pub = nh.advertise<std_msgs::String>("chatter", 10);
+    ros::Publisher pub = nh.advertise<std_msgs::String>("/chatter", 10);
     
     std_msgs::String msg;
 

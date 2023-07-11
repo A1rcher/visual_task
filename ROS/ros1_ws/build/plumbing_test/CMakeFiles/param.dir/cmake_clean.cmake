@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/lib/plumbing_test/param"
-  "/home/archer/ros1_ws/devel/lib/plumbing_test/param.pdb"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/lib/plumbing_test/param"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/lib/plumbing_test/param.pdb"
   "CMakeFiles/param.dir/src/param.cpp.o"
+  "CMakeFiles/param.dir/src/param.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

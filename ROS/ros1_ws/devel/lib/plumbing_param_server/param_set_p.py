@@ -3,7 +3,7 @@
 # generated from catkin/cmake/template/script.py.in
 # creates a relay to a python script source file, acting as that file.
 # The purpose is that of a symlink
-python_script = '/home/archer/ros1_ws/src/plumbing_param_server/scripts/param_set_p.py'
+python_script = '/home/archer/visual_task/ROS/ros1_ws/src/plumbing_param_server/scripts/param_set_p.py'
 with open(python_script, 'r') as fh:
     context = {
         '__builtins__': __builtins__,

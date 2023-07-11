@@ -1,8 +1,8 @@
-# Install script for directory: /home/archer/ros1_ws/src/plumbing_test
+# Install script for directory: /home/archer/visual_task/ROS/ros1_ws/src/plumbing_test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/archer/ros1_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/archer/visual_task/ROS/ros1_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -37,34 +37,39 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/archer/ros1_ws/build/plumbing_test/catkin_generated/installspace/plumbing_test.pc")
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/catkin_generated/installspace/plumbing_test.pc")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/plumbing_test/cmake" TYPE FILE FILES
-    "/home/archer/ros1_ws/build/plumbing_test/catkin_generated/installspace/plumbing_testConfig.cmake"
-    "/home/archer/ros1_ws/build/plumbing_test/catkin_generated/installspace/plumbing_testConfig-version.cmake"
+    "/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/catkin_generated/installspace/plumbing_testConfig.cmake"
+    "/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/catkin_generated/installspace/plumbing_testConfig-version.cmake"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/plumbing_test" TYPE FILE FILES "/home/archer/ros1_ws/src/plumbing_test/package.xml")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/plumbing_test" TYPE FILE FILES "/home/archer/visual_task/ROS/ros1_ws/src/plumbing_test/package.xml")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/ros1_ws/build/plumbing_test/catkin_generated/installspace/pub_twist_p.py")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/catkin_generated/installspace/pub_twist_p.py")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/ros1_ws/build/plumbing_test/catkin_generated/installspace/sub_pose_p.py")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/catkin_generated/installspace/sub_pose_p.py")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/ros1_ws/build/plumbing_test/catkin_generated/installspace/server_client_p.py")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/catkin_generated/installspace/server_client_p.py")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/ros1_ws/build/plumbing_test/catkin_generated/installspace/param_p.py")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/plumbing_test" TYPE PROGRAM FILES "/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/catkin_generated/installspace/param_p.py")
 endif()
 

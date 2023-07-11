@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/include/plumbing_pub_sub/Person.h"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/include/plumbing_pub_sub/Person.h"
   "CMakeFiles/plumbing_pub_sub_generate_messages_cpp"
 )
 

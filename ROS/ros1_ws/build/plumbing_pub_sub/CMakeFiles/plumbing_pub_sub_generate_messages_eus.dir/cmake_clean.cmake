@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/share/roseus/ros/plumbing_pub_sub/manifest.l"
-  "/home/archer/ros1_ws/devel/share/roseus/ros/plumbing_pub_sub/msg/Person.l"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/share/roseus/ros/plumbing_pub_sub/manifest.l"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/share/roseus/ros/plumbing_pub_sub/msg/Person.l"
   "CMakeFiles/plumbing_pub_sub_generate_messages_eus"
 )
 

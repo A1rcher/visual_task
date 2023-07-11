@@ -1,8 +1,8 @@
-# Install script for directory: /home/archer/ros1_ws/src/hello_vscode
+# Install script for directory: /home/archer/visual_task/ROS/ros1_ws/src/hello_vscode
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/archer/ros1_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/archer/visual_task/ROS/ros1_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -37,22 +37,27 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/archer/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscode.pc")
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/archer/visual_task/ROS/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscode.pc")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hello_vscode/cmake" TYPE FILE FILES
-    "/home/archer/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscodeConfig.cmake"
-    "/home/archer/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscodeConfig-version.cmake"
+    "/home/archer/visual_task/ROS/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscodeConfig.cmake"
+    "/home/archer/visual_task/ROS/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscodeConfig-version.cmake"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hello_vscode" TYPE FILE FILES "/home/archer/ros1_ws/src/hello_vscode/package.xml")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hello_vscode" TYPE FILE FILES "/home/archer/visual_task/ROS/ros1_ws/src/hello_vscode/package.xml")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hello_vscode" TYPE PROGRAM FILES "/home/archer/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscode_py.py")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hello_vscode" TYPE PROGRAM FILES "/home/archer/visual_task/ROS/ros1_ws/build/hello_vscode/catkin_generated/installspace/hello_vscode_py.py")
 endif()
 

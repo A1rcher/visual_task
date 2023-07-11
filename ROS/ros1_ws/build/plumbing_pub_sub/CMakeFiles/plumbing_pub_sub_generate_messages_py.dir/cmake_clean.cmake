@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/archer/ros1_ws/devel/lib/python3/dist-packages/plumbing_pub_sub/msg/_Person.py"
-  "/home/archer/ros1_ws/devel/lib/python3/dist-packages/plumbing_pub_sub/msg/__init__.py"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/lib/python3/dist-packages/plumbing_pub_sub/msg/_Person.py"
+  "/home/archer/visual_task/ROS/ros1_ws/devel/lib/python3/dist-packages/plumbing_pub_sub/msg/__init__.py"
   "CMakeFiles/plumbing_pub_sub_generate_messages_py"
 )
 

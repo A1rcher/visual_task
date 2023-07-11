@@ -1,8 +1,8 @@
-# Install script for directory: /home/archer/ros1_ws/src
+# Install script for directory: /home/archer/visual_task/ROS/ros1_ws/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/archer/ros1_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/archer/visual_task/ROS/ros1_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -37,7 +37,12 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   
       if (NOT EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}")
         file(MAKE_DIRECTORY "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}")
@@ -47,95 +52,100 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
       endif()
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/archer/ros1_ws/install/_setup_util.py")
+   "/home/archer/visual_task/ROS/ros1_ws/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/archer/ros1_ws/install" TYPE PROGRAM FILES "/home/archer/ros1_ws/build/catkin_generated/installspace/_setup_util.py")
+  file(INSTALL DESTINATION "/home/archer/visual_task/ROS/ros1_ws/install" TYPE PROGRAM FILES "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/_setup_util.py")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/archer/ros1_ws/install/env.sh")
+   "/home/archer/visual_task/ROS/ros1_ws/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/archer/ros1_ws/install" TYPE PROGRAM FILES "/home/archer/ros1_ws/build/catkin_generated/installspace/env.sh")
+  file(INSTALL DESTINATION "/home/archer/visual_task/ROS/ros1_ws/install" TYPE PROGRAM FILES "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/env.sh")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/archer/ros1_ws/install/setup.bash;/home/archer/ros1_ws/install/local_setup.bash")
+   "/home/archer/visual_task/ROS/ros1_ws/install/setup.bash;/home/archer/visual_task/ROS/ros1_ws/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/archer/ros1_ws/install" TYPE FILE FILES
-    "/home/archer/ros1_ws/build/catkin_generated/installspace/setup.bash"
-    "/home/archer/ros1_ws/build/catkin_generated/installspace/local_setup.bash"
+  file(INSTALL DESTINATION "/home/archer/visual_task/ROS/ros1_ws/install" TYPE FILE FILES
+    "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/setup.bash"
+    "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/archer/ros1_ws/install/setup.sh;/home/archer/ros1_ws/install/local_setup.sh")
+   "/home/archer/visual_task/ROS/ros1_ws/install/setup.sh;/home/archer/visual_task/ROS/ros1_ws/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/archer/ros1_ws/install" TYPE FILE FILES
-    "/home/archer/ros1_ws/build/catkin_generated/installspace/setup.sh"
-    "/home/archer/ros1_ws/build/catkin_generated/installspace/local_setup.sh"
+  file(INSTALL DESTINATION "/home/archer/visual_task/ROS/ros1_ws/install" TYPE FILE FILES
+    "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/setup.sh"
+    "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/archer/ros1_ws/install/setup.zsh;/home/archer/ros1_ws/install/local_setup.zsh")
+   "/home/archer/visual_task/ROS/ros1_ws/install/setup.zsh;/home/archer/visual_task/ROS/ros1_ws/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/archer/ros1_ws/install" TYPE FILE FILES
-    "/home/archer/ros1_ws/build/catkin_generated/installspace/setup.zsh"
-    "/home/archer/ros1_ws/build/catkin_generated/installspace/local_setup.zsh"
+  file(INSTALL DESTINATION "/home/archer/visual_task/ROS/ros1_ws/install" TYPE FILE FILES
+    "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/setup.zsh"
+    "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/archer/ros1_ws/install/.rosinstall")
+   "/home/archer/visual_task/ROS/ros1_ws/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/archer/ros1_ws/install" TYPE FILE FILES "/home/archer/ros1_ws/build/catkin_generated/installspace/.rosinstall")
+  file(INSTALL DESTINATION "/home/archer/visual_task/ROS/ros1_ws/install" TYPE FILE FILES "/home/archer/visual_task/ROS/ros1_ws/build/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/archer/ros1_ws/build/gtest/cmake_install.cmake")
-  include("/home/archer/ros1_ws/build/hello_vscode/cmake_install.cmake")
-  include("/home/archer/ros1_ws/build/plumbing_param_server/cmake_install.cmake")
-  include("/home/archer/ros1_ws/build/plumbing_pub_sub/cmake_install.cmake")
-  include("/home/archer/ros1_ws/build/plumbing_server_client/cmake_install.cmake")
-  include("/home/archer/ros1_ws/build/plumbing_test/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/gtest/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/plumbing_my/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/hello_vscode/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/plumbing_param_server/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/plumbing_pub_sub/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/plumbing_server_client/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/tf01_static/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/tf02_dynamic/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/tf03_tfs/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/launch01_basic/cmake_install.cmake")
+  include("/home/archer/visual_task/ROS/ros1_ws/build/plumbing_test/cmake_install.cmake")
 
 endif()
 
@@ -147,5 +157,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/archer/ros1_ws/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/archer/visual_task/ROS/ros1_ws/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
