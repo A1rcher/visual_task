@@ -94,6 +94,7 @@ rosrun ros_bag 源文件名.py    # 执行python文件
 ```shell
 cd ros_bag
 mkdir msg
+cd msg
 vim xxx.msg
 ```
 xxx.msg:
@@ -109,7 +110,7 @@ float64  xxx3
 <exec_depend>message_runtime</exec_depend>
 ```
 ##### 编辑CMakeLists.txt
-```txt
+```typescript
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
@@ -281,4 +282,253 @@ if __name__ = "__main__":
     rospy.spin()
 
 # 订阅方的自定义msg实现改的地方与发布方类似
+```
+### 2.2服务通信
+#### 2.2.1自定义srv
+##### 创建srv文件
+```shell
+cd ros_bag
+mkdir srv
+cd srv
+vim xxx.srv
+```
+srv文件：
+```txt
+# request
+int32 num1
+int32 num2
+---
+# response
+int32 sum
+```
+##### 编辑package.xml
+```xml
+<build_depend>message_generation</build_depend>
+<exec_depend>message_runtime</exec_depend>
+```
+##### 编辑CMakeLists.txt
+```typescript
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation    # 新添加的
+)
+
+add_service_files(
+  FILES
+  xxx.srv    # 新添加的
+)
+
+# 解锁
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
+```
+#### 2.2.2 源文件模板（C++）
+##### 服务端
+```cpp
+#include "ros/ros.h"
+#include "ros_bag/xxx.h"
+
+// 回调函数，bool返回值为是否处理成功
+bool deReq(ros_bag::xxx::Request& req,ros_bag::xxx::Response& resp){
+    int num1 = req.num1;
+    int num2 = req.num2;
+    if (输入有误){
+        return false;    
+    }
+    resp.sum = num1 + num2;
+    return true
+}
+
+int main(int argc, char *argv[])
+{
+    setlocale(LC_ALL, "");
+    // 初始化节点
+    ros::init(argc, argv, "server");
+    // 创建句柄
+    ros::NodeHandle nh;
+    // 创建服务对象
+    ros::ServiceServer server = nh.advertiseService("chatter", doReq);
+    // 循环调用回调函数
+    ros::spin();
+    return 0;
+}
+```
+##### 客户端
+```cpp
+#include "ros/ros.h"
+#include "ros_bag/xxx.h"
+
+int main(int argc, char *argv[])
+{
+    setlocale(LC_ALL, "");
+    
+    // 检查输入是否错误
+    if (argc != 3){
+        ROS_ERROR("输入错误");
+        return 1;
+    }
+
+    // 初始化节点
+    ros::init(argc, argv, "client");
+
+    //创建句柄
+    ros::NodeHandle nh;
+
+    // 创建客户端对象
+    ros::ServiceClient client = nh.serviceClient<ros_bag::xxx>("chatter");
+
+    // 等待服务启动
+    ros::service::waitForService("chatter");
+    // client.waitForService();
+
+    // 定义请求数据
+    ros_bag::xxx add_num;
+    add_num.request.num1 = atoi(argv[1]);
+    add_num.request.num2 = atoi(argv[2]);
+
+    // 发送请求，并返回bool值
+    bool flag = client.call(add_num);
+
+    // 处理响应
+    if (flag){
+        ROS_INFO("sum:%d", add_num.response.sum);
+    }
+    else{
+        ROS_ERROR("err!");
+        return 1;
+    }
+     return 0;
+}
+```
+#### 2.2.3 源文件模板（Python）
+##### 服务端
+```python
+#! /usr/bin/env python
+
+import rospy
+from ros_bag.srv import xxx, xxxRequest, xxxResponse
+
+# 回调函数
+def doReq(req):
+    sum = req.num1 + req.num2
+    resp = xxxResponse()
+    resp.sum = sum
+    return resp
+
+if __name__ == "__main__":
+    # 初始化节点
+    rospy.init_node("server_p")
+    # 创建服务端对象
+    server = rospy.Service("chatter", xxx, doReq)
+    # 循环调用回调函数
+    rospy.spin()
+```
+##### 客户端
+```python
+#! /usr/bin/env python
+
+import rospy
+from ros_bag.srv import *
+import sys
+
+if __name__ == "__main__":
+    # 判断输入是否有误
+    if len(sys.argv) != 3:
+        rospy.logerr("输入错误")
+        sys.exit(1)
+
+    # 初始化节点
+    rospy.init_node("client_p")
+
+    # 创建请求对象
+    client = rospy.ServiceProxy("chatter", xxx)
+
+    # 等待服务器
+    rospy.wait_for_service("chatter")
+    # client.wait_for_service()
+
+    # 定义数据
+    req = xxxRequest()
+    req.num1 = int(sys.argv[1])
+    req.num2 = int(sys.argv[2])
+
+    # 发送请求
+    resp = client.call(req)
+
+    # 输出信息
+    rospy.loginfo("sum:%d", resp.sum)
+    
+```
+### 2.3 参数服务器
+#### 2.3.1 新增（修改）参数
+##### C++
+```cpp
+// 使用NodeHandle
+ros::NodeHandle nh;
+nh.setParam("nh_int", 10);
+nh.setParam("nh_double", 10.0);
+nh.setParam("nh_bool", true);
+nh.setParam("nh_string", "hello");
+nh.setParam("nh_vector", _vector);
+nh.setParam("nh_map", _map);
+// 修改（相同的键，不同的值）
+
+// 使用param
+ros::param::set("param_int", 10);
+...
+
+```
+##### python
+```python
+rospy.set_param("p_int", 10)
+rospy.set_param("p_double", 10.0)
+rospy.set_param("p_bool", True)
+rospy.set_param("p_string", "hello")
+rospy.set_param("p_list", _list)
+rospy.set_param("p_dict", _dict)
+```
+#### 2.3.2 获取参数
+##### C++
+```cpp
+// 使用NodeHandle
+ros::NodeHandle nh;
+nh.param(键, 默认值);    //存在，返回对应结果，否则返回默认值
+nh.getParam(键, 存储结果的变量);    // 存在，返回true
+nh.getParamCached(键, 存储结果的变量);    // 与getParam类似，提高了变量获取效率
+nh.getParamNames(std::vector<std::string>);    // 获取所有的键，存储在vector变量中
+nh.hasParam(键);    // 是否包含键
+nh.searchParam(参数1, 参数2);    // 搜索键，参数1是被搜索的键，参数2是存储结果的的变量
+
+// 使用param
+ros::param::param(键, 默认值);
+ros::param::get(键, 存储结果的变量);
+ros::param::getCached(键, 存储结果的变量);
+ros::param::getParamNames(std::vector<std::string>);
+ros::param::has(键);
+ros::param::search(参数1, 参数2);
+```
+##### python
+```python
+int_value = rospy.get_param("p_int",10000)
+int_cached = rospy.get_param_cached("p_int")
+names = rospy.get_param_names()
+flag = rospy.has_param("p_int")
+key = rospy.search_param("p_int")
+```
+#### 2.3.3 删除参数
+##### C++
+```cpp
+ros::NodeHandle nh;
+bool flag1 = nh.deleteParam("nh_int");
+
+bool flag2 = ros::param::del("param_int");
+```
+##### python
+```python
+rospy.delete_param("p_int")
 ```

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/archer/visual_task/ROS/ros3_ws/install/setup.sh
