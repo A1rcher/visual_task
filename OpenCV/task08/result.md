@@ -9,6 +9,6 @@ V--亮度
 ### 任务
 提取红色像素  
 **输入**：  
-![input](image/8.png)
+![input](image/8.png)  
 **输出**：  
-![output](image/output.png)
+![output](image/output.png)  
