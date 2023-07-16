@@ -11,7 +11,7 @@
 ![output](image/output1_1.png)
 
 ## task2  
-**输入**： 
+**输入**：  
 ![input](image/2.jpg)  
 
 **二值化后的图像**：  
