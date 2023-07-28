@@ -591,3 +591,416 @@ rosparam dump       # 将参数写出到外部文件
 rosparam delete     # 删除参数
 rosparam list       # 列出所有参数
 ```
+## 3 ROS运行管理
+### 3.1 launch文件
+#### 3.1.1 node标签
+**属性**
+```xml
+<node pkg="包名"
+      type="节点类型"
+      name="节点名称"
+      args="xxx xxx xxx"        # 传参
+      machine="机器名"           # 指定机器启动节点
+      respawn="true | false"    # 如果节点退出，是否自动重启
+      respawn_delay="n"         # 如果respawn=true，延迟n秒后启动节点
+      required="true | false"   # 该节点是否必须。如果必须，节点退出，杀死整个roslaunch
+      ns="xxx"                  # 在指定的命名空间启动节点
+      clear_params="true | false"       # 在启动前，删掉节点的私有空间的参数
+      output="log | screen"     # 日志发送目标          
+/>
+```
+**子级标签**
+- env
+- remap
+- rosparam
+- param
+#### 3.1.2 include标签
+导入其他launch文件
+**属性**
+```xml
+<include file="$(find 包名)/launch/xxx.launch" 
+         ns="xxx"    #指定命名空间
+/>
+```
+**子级标签**
+- env
+- arg
+#### 3.1.3 remap标签
+话题重命名
+**属性**
+```xml
+<remap from="xxx"   # 原始话题
+       to="yyy"     # 目标话题
+/>
+```
+#### 3.1.4 param标签
+设置参数
+**属性**
+```xml
+<param name="xxx"   # 参数名称 
+       value="xxx"  # 定义参数值
+       type="str | int | double | bool | yaml"
+/>
+```
+#### 3.1.5 rosparam标签
+从yaml文件中导入导出参数
+**属性**
+```xml
+<rosparam command="load | dump | delete"    # 加载、导出、删除参数 
+          file="$(find xxx)/xxx/xxx"
+          param="参数名称"
+          ns="命名空间"
+/>
+```
+#### 3.1.6 group标签
+对节点分组
+**属性**
+```xml
+<group ns="命名空间"    # 可让节点属于某个命名空间
+       clear_params="true | false"      # 启动前，是否删除命名空间中的所有参数
+/>
+```
+**子级标签**
+除了launch标签，其他都可以
+#### 3.1.7 arg标签
+用于动态传参
+**属性**
+```xml
+<arg name="参数名称" 
+     default="默认值"
+     value="数值"
+     doc="描述"     # 参数说明
+/>
+```
+**示例**
+1. launch文件
+    ```xml
+    <launch>
+        <arg name="xxx" />
+        <param name="param" value="$(arg xxx)" />
+    </launch>
+    ```
+2. 命令行动态传参
+    ```shell
+    roslaunch xxx.launch xxx:=值
+    ```
+
+## 4 ROS常用组件
+### 4.1 TF坐标变换
+#### 4.1.1 认识坐标msg
+**geometry_masgs/TranformStamped**
+用于传输坐标系相关位置信息  
+![TranformStamped](image/TransformStamped.png)  
+**geometry_msgs/PointStamped**
+用于传输某个坐标系内坐标点的消息  
+![PointStamped](image/PointStamped.png)  
+
+#### 4.1.2 静态坐标发布
+建议直接命令行
+`rosrun tf2_ros static_transform_publisher x偏移量 y偏移量 z偏移量 z偏航角度 y俯仰角度 x翻滚角度 父级坐标系 子级坐标系`
+
+#### 4.1.3 动态坐标变换
+1. **依赖功能包**
+   roscpp rospy std_msgs tf2 tf2_ros tf2_geometry_msgs geometry_msgs turtlesim  
+2. **发布方**
+    **c++**
+    ```cpp
+    #include "ros/ros.h"
+    #include "turtlesim/Pose.h"
+    #include "tf2_ros/transform_broadcaster.h"
+    #include "geometry_msgs/TransformStamped.h"
+    #include "tf2/LinearMath/Quaternion.h"
+
+    void doPose(const turtlesim::Pose::ConstPtr& pose){
+        // 创建tf广播器
+        static tf2_ros::TransformBroadcaster broadcaster;
+
+        // 创建广播数据
+        geometry_msgs::TransformStamped tfs;
+
+        // 头设置
+        tfs.header.frame_id = "world";
+        tfs.header.stamp = ros::Time::now();
+
+        // 坐标系ID
+        tfs.child_frame_id = "turtle1";
+
+        // 坐标系相对位置设置
+        tfs.transform.translation.x = pose->x;
+        tfs.transform.translation.y = pose->y;
+        tfs.transform.translation.z = 0.0;
+
+        // 四元数设置
+        tf2::Quaternion qtn;
+        qtn.setRPY(0, 0, pose->theta);
+        tfs.transform.rotation.x = qtn.getX();
+        tfs.transform.rotation.y = qtn.getY();
+        tfs.transform.rotation.z = qtn.getZ();
+        tfs.transform.rotation.w = qtn.getW();
+
+        // 广播器发布数据
+        broadcaster.sendTransform(tfs);
+    }
+
+    int main(int argc, char *argv[])
+    {
+        setlocale(LC_ALL, "");
+
+        // 初始化节点
+        ros::init(argc, argv, "pub");
+
+        // 创建句柄
+        ros::NodeHandle nh;
+
+        // 创建订阅对象
+        ros::Subscriber sub = nh.subscribe<turtlesim::Pose>("/turtle1/pose", 1000, doPose);
+
+        // 循环调用回调函数
+        ros::spin();
+
+        return 0;
+    }
+    ```
+
+    **python**
+    ```python
+    import rospy
+    import tf2_ros
+    import tf
+    from turtlesim.msg import Pose
+    from geometry_msgs.msg import TransformStamped
+
+    def doPose(pose):
+        # 创建tf广播器
+        broadcaster = tf2_ros.TransformBroadcaster()
+
+        # 创建广播数据
+        tfs = TransformStamped()
+
+        # 头设置
+        tfs.header.frame_id = "world"
+        tfs.header.stamp = rospy.Time.now()
+
+        # 坐标系ID
+        tfs.child_frame_id = "turtle1"
+
+        # 坐标系相对位置设置
+        tfs.transform.translation.x = pose.x
+        tfs.transform.translation.y = pose.y
+        tfs.transform.translation.z = 0.0
+
+        # 设置四元数
+        qtn = tf.transformations.quaternion_from_euler(0, 0, pose.theta)
+        tfs.transform.rotation.x = qtn[0]
+        tfs.transform.rotation.y = qtn[1]
+        tfs.transform.rotation.z = qtn[2]
+        tfs.transform.rotation.w = qtn[3]
+
+        # 广播器发布数据
+        broadcaster.sendTransform(tfs)
+
+ 
+    if __name__ == "__main__":
+        # 初始化节点
+        rospy.init_node("pub")
+        # 订阅话题消息
+        sub = rospy.Subscriber("/turtle1/pose", Pose, doPose)
+        # 循环调用回调函数
+        rospy.spin()
+    ```
+
+3. **订阅方**
+    **c++**
+    ```cpp
+    #include "ros/ros.h"
+    #include "tf2_ros/transform_listener.h"
+    #include "tf2_ros/buffer.h"
+    #include "geometry_msgs/PointStamped.h"
+    #include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+
+    int main(int argc, char *argv[])
+    {
+        setlocale(LC_ALL, "");
+
+        // 初始化节点
+        ros::init(argc, argv, "sub");
+
+        // 创建句柄
+        ros::Nodehandle nh;
+
+        // 创建tf订阅节点
+        tf2_ros::Buffer buffer;
+        tf2_ros::TransformListener listener(buffer);
+
+        ros::Rate rate(10);
+
+        while (ros::ok()){
+            // 生成一个相对于子级坐标系的坐标点
+            geometry_msgs::PointStamped point_laser;
+            point_laser.header.frame_id = "turtle1";
+            point_laser.header.stamp = ros::Time();
+            point_laser.point.x = 1;
+            point_laser.point.y = 1;
+            point_laser.point.z = 0;
+
+            // 转换成相对父级坐标系的坐标点
+            try
+            {
+                geometry_msgs::PointStamped point_base;
+                point_base = buffer.transform(point_laser, "world");
+                ROS_INFO("...");   // 打印消息，偷个懒hh
+            }
+            catch(const std::exception& e)
+            {
+                ROS_INFO("出错了");
+            }
+
+            // 休眠
+            rate.sleep();
+            ros::spinOnce();
+        }
+        return 0
+    }
+    ```
+
+    **python**
+    ```python
+    import rospy
+    import tf2_ros
+    from tf2_geometry_msgs import PointStamped
+
+    if __name__ == "__main__":
+        # 初始化节点
+        rospy.init_node("sub")
+
+        # 创建tf订阅对象
+        buffer = tf2_ros.Buffer()
+        listener = tf2_ros.TramsformListener(buffer)
+
+        rate = rospy.Rate(10)
+
+        while not rospy.is_shutdown():
+
+            # 生成一个相对于子级坐标系的坐标点
+            point_laser = PointStamped()
+            point_laser.header.frame_id = "turtle1"
+            point_laser.header.stamp = rospy.Time.now()
+            point_laser.point.x = 1
+            point_laser.point.y = 1
+            point_laser.point.z = 0
+
+            # 转换成相对父级坐标系的坐标点
+            try:
+                point_base = buffer.transform(point_laser, "world", rospy.Duration(1))
+                rospy.loginfo("...")    # 打印消息
+            except Exception as e:
+                rospy.logerr(f"异常：{e}")
+
+            # 休眠
+            rate.sleep()
+    ```
+
+#### 4.1.4 多坐标变换
+依赖的功能包与发布方的实现与动态坐标发布类似，因此不在赘述。
+**订阅方**
+**c++**
+```cpp
+#include "ros/ros.h"
+#include "tf2_ros/transform_listener.h"
+#include "tf2/LinearMath/Quaternion.h"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+#include "geometry_msgs/TransformStamped.h"
+#include "geometry_msgs/PointStamped.h"
+
+int main(int argc, char *argv[])
+{
+    setlocale(LC_ALL, "");
+
+    // 初始化节点
+    ros::init(argc, argv, "sub");
+
+    // 创建句柄
+    ros::Nodehandle nh;
+
+    // 创建tf订阅对象
+    tf2_ros::Buffer buffer;
+    tf2_ros::TransformListener listener(buffer);
+
+    ros::Rate rate(10);
+
+    while(ros::ok())
+    {
+        try
+        {
+            // 解析son1坐标系在son2坐标系中的坐标
+            geometry_msgs::TransformStamped tfs = buffer.lookupTransform("son2", "son1", ros::Time(0));
+            ROS_INFO("...");
+
+            // 生成一个相对于son1坐标系的坐标点
+            geometry_msgs::PointStamped ps;
+            ps.header.frame_id = "son1";
+            ps.header.stamp = ros::Time::now();
+            ps.point.x = 1;
+            ps.point.y = 1;
+            ps.point.z = 0;
+
+            // 转换成相对son2坐标系的坐标点
+            geometry_msgs::PointStamped psAtSon2;
+            psAtSon2 = buffer.transform(ps, "son2");
+            ROS_INFO("...");
+        }
+        catch(const std::exception& e)
+        {
+            ROS_INFO("异常");
+        }
+
+        // 休眠
+        rate.sleep();
+        ros::spinOnce();
+    }
+
+    return 0;
+}
+```
+
+**python**
+```python
+import rospy
+import tf2_ros
+from geometry_msgs.msg import TransformStamped 
+from tf2_geometry_msgs import PointStamped
+
+if __name__ == "__main__":
+    # 初始化节点
+    rospy.init_node("sub")
+
+    # 创建tf订阅对象
+    buffer = tf2_ros.Buffer()
+    listener = tf2_ros.TramsformListener(buffer)
+
+    rate = rospy.Rate(10)
+
+    while not rospy.is_shutdown():
+        try:
+            tfs = buffer.lookup_transform("son2", "son1", rospy.Time(0))
+            rospy.loginfo("...")
+
+
+            # 生成一个相对于son1坐标系的坐标点
+            point_laser = PointStamped()
+            point_laser.header.frame_id = "son1"
+            point_laser.header.stamp = rospy.Time.now()
+            point_laser.point.x = 1
+            point_laser.point.y = 1
+            point_laser.point.z = 0
+
+            # 转换成相对son2坐标系的坐标点
+            point_base = buffer.transform(point_laser, "son2", rospy.Duration(1))
+            rospy.loginfo("...")    # 打印消息
+            
+        except Exception as e:
+            rospy.logerr(f"异常：{e}")
+
+        # 休眠
+        rate.sleep()
+```
